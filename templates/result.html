@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="result-box">
+        <h2>📍 Weather Forecast for {{ city }}, {{ country }}</h2>
+        <p><strong>Description:</strong> {{ weather.description }}</p>
+        <p><strong>🌡 Temp:</strong> {{ weather.current_temp }}°C (Feels like {{ weather.feels_like }}°C)</p>
+        <p><strong>🔻 / 🔺 Min/Max:</strong> {{ weather.temp_min }}°C / {{ weather.temp_max }}°C</p>
+        <p><strong>💧 Humidity:</strong> {{ weather.humidity }}%</p>
+        <p><strong>🌬 Pressure:</strong> {{ weather.pressure }} hPa</p>
+        <p><strong>🌧️ Rain Tomorrow:</strong> <b>{{ rain }}</b></p>
+
+        <h3>📈 Temperature Forecast (next 5 hrs):</h3>
+        <ul>
+            {% for time, val in future_temp %}
+            <li>{{ time }} — {{ val | round(1) }}°C</li>
+            {% endfor %}
+        </ul>
+
+        <h3>💧 Humidity Forecast (next 5 hrs):</h3>
+        <ul>
+            {% for time, val in future_hum %}
+            <li>{{ time }} — {{ val | round(1) }}%</li>
+            {% endfor %}
+        </ul>
+
+        <a href="/">← Back</a>
+    </div>
+</body>
+</html>
